@@ -156,7 +156,7 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
   uint32_t wrstartTime = micros()-startTime;
 
   startTime = micros();
-  while(!ADCpool() && (micros()-startTime< 360000)); //reread, allow settling more than 300ms
+  while(!ADCpool() && (micros()-startTime< 360000) ) //reread, allow settling more than 300ms
   {
     yield();
   }
