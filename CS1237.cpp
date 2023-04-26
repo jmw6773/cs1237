@@ -82,7 +82,7 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
   {
   //Debug print
     Serial.print("Error: begin: Constructor was not successfull:\t");
-    Serial.println(statusReg2,HEX);
+    Serial.println(statusReg,HEX);
     return 0;   
   }
 
@@ -202,7 +202,7 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
 
 
 
-bool ICACHE_RAM_ATTR CS1237::one_bit(bool _bit) //contains time sensitive inline code, put in RAM
+bool IRAM_ATTR CS1237::one_bit(bool _bit) //contains time sensitive inline code, put in RAM
 {
 #define NOMINAL_SPEED_kbps 1100
 #define delayTwiUp (F_CPU/NOMINAL_SPEED_kbps/1000/2-22)/4
@@ -252,7 +252,7 @@ bool ICACHE_RAM_ATTR CS1237::one_bit(bool _bit) //contains time sensitive inline
 
 
 
-bool ICACHE_RAM_ATTR CS1237::ADCread()    //ToDo : test callable from ISR
+bool IRAM_ATTR CS1237::ADCread()    //ToDo : test callable from ISR
 {
 
   ADCdata = 0;
@@ -284,7 +284,7 @@ bool ICACHE_RAM_ATTR CS1237::ADCread()    //ToDo : test callable from ISR
         writeout = (writeout<<1)|tempReg;
         
     }
-    statusReg2=writeout;
+//?/    statusReg2=writeout;
     statusReg &= ~SRM_WRITE_CNF_PENDING;
   } 
   
@@ -311,7 +311,7 @@ bool ICACHE_RAM_ATTR CS1237::ADCread()    //ToDo : test callable from ISR
         writeout = (writeout<<1)|tempReg;
       }
       configReg = (writeout>>1) & 0xFF;
-    statusReg3=writeout;
+//?/    statusReg3=writeout;
       statusReg &= ~SRM_READ_CNF_PENDING;
     } 
   } 
