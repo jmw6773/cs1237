@@ -15,7 +15,7 @@ CS1237::CS1237(int _datapinno, int _clkpinno)
     twi_scl_pin = _clkpinno ;   // this instance clk pin
 
     //test and setup pins
-    statusReg |= SRM_INIT_SUCCESS;
+    statusReg = SRM_INIT_SUCCESS;
     //statusReg2=0;
 
     //test clk stuck low
