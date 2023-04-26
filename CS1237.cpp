@@ -29,7 +29,7 @@ CS1237::CS1237(int _datapinno, int _clkpinno)
     digitalWrite(twi_scl_pin, HIGH);
     pinMode(twi_scl_pin, OUTPUT);
     digitalWrite(twi_scl_pin, LOW);
-    tmpReg=digitalRead(twi_scl_pin);
+    uint32_t tmpReg=digitalRead(twi_scl_pin);
     digitalWrite(twi_scl_pin, HIGH);
     if (tmpReg) 
     {statusReg &= ~SRM_INIT_SUCCESS;
