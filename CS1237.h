@@ -30,6 +30,8 @@
 #ifndef CS1237_LIB_H
 #define CS1237_LIB_H
 
+#include <Arduino.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
