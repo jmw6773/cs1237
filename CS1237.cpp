@@ -81,8 +81,7 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
   if (!(statusReg & SRM_INIT_SUCCESS)) 
   {
   //Debug print
-    Serial.print("Error: begin: Constructor was not successfull:\t");
-    Serial.println(statusReg,HEX);
+    ESP_LOGI("CS1237", "Error: begin: Constructor was not successfull:%h", statusREG);
     return 0;   
   }
 
@@ -109,12 +108,10 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
   if (dRdy) {
     statusReg &= ~SRM_INIT_SUCCESS;                //error condition
   //Debug print
-    Serial.println("begin: Error: Time out waking up from sleep.");
+    ESP_LOGI("CS1237", "begin: Error: Time out waking up from sleep.");
     return 0;
   } else {
-    Serial.print("begin: Waking up time (us):\t");
-    Serial.println(nowTime-startTime);
-    
+    ESP_LOGI("CS1237", "begin: Waking up time (us): %d", nowTime-startTime);
   }
   
  
@@ -184,7 +181,7 @@ bool CS1237::begin(int _gain , int _samplerate , int _channel , bool _refo_off )
   }
   else
   {
-    Serial.println("ADC Initiated");
+    ESP_LOGI("CS1237", "ADC Initiated");
     statusReg |= SRM_INIT_SUCCESS;
     return 1;
   }
