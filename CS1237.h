@@ -31,6 +31,7 @@
 #define CS1237_LIB_H
 
 #include <Arduino.h>
+#include "esphome.h"
 
 #ifdef __cplusplus
 extern "C" {
